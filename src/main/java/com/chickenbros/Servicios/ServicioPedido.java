@@ -54,8 +54,17 @@ public class ServicioPedido {
         int hora, minutos, segundos;
         hora = calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
+        int horaActualMin=hora*60;
+      ;
+        int horaFinMinutos=22*60;
+        int horaInic=horaActualMin+minutos;
         
-        listaHs.add(formatearMinutosAHoraMinuto(120));
+        for(int i=0; horaInic<=horaFinMinutos;i++)
+        {
+          horaInic=horaInic+30;
+          listaHs.add(formatearMinutosAHoraMinuto(horaInic));
+          
+        }
         
         return listaHs;
     }

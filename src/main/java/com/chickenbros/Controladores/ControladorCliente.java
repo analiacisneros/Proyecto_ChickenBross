@@ -31,7 +31,7 @@ public class ControladorCliente {
 	@GetMapping("/registro")
 	public String formulario() throws Exception {
             //clienteServ.guardarCliente(); *Esto solo realiza una prueba sin post
-		return "form_cliente";
+		return "registroUsuario";
 	}
 	
 	@PostMapping("/registro")
@@ -41,11 +41,11 @@ public class ControladorCliente {
                     Long telefonoL = Long.parseLong(telefono);
                        servCliente.guardarCliente(nombre,apellido, email, clave,  direccion, telefonoL,claveRep);
                       modelo.put("exito", "Guardado con exito");
-                       return "form_cliente";
+                       return "registroUsuario";
 
 		} catch (Exception e) {
 			modelo.put("error", e.getMessage());
-			return "form_cliente";
+			return "registroUsuario";
 		}
 	}
 }

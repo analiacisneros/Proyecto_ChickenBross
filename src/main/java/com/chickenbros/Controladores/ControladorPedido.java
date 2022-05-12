@@ -21,10 +21,11 @@ public class ControladorPedido {
     private ServicioPedido servPedido;
 
     @GetMapping("/agregar")
-    public String agregarpedido(Model modelo)
+    public String agregarpedido(ModelMap modelo)
     {
-        List<String> listaHoras = servPedido.listarHoras();
-        modelo.put("listaProducto", listaHoras);
+        List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
+        
+        modelo.put("listaHora", listaHoras);
         
         return "pedido";
     }
@@ -37,7 +38,7 @@ public class ControladorPedido {
 		
 		try {
                        servPedido.agregarPedido(id_cliente, monto_total, hora_entrega, lugar);
-                      modelo.put("exito", hora_entrega);
+                      modelo.put("hora", hora_entrega);
                        return "pedido";
 
 		} catch (Exception e) {

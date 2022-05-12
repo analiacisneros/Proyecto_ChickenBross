@@ -14,15 +14,14 @@ public class ServicioAdmin {
 	private RepositorioAdmin adminRepo;
 
 	@Transactional
-	public void guardar() throws Exception {
+	public void guardar(String nombre, String email, String clave) throws Exception {
             //String nombre, String apellido, String email, String clave
             Administrador admin = new Administrador();   
 
-             admin.setNombre("Leonardo");
-             admin.setEmail("admin.com");
-             admin.setClave("1111");
-             adminRepo.save(admin);
-	
-}
+             admin.setNombre(nombre);
+             admin.setEmail(email);
+             admin.setClave(clave);
+            adminRepo.save(admin); 
+           }
 
 }

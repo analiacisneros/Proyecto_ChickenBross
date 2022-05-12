@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,8 +28,8 @@ public class ControladorAdmin {
 	}
 	
 	@GetMapping("/registro")
-	public String formulario() throws Exception {
-            adminServ.guardar(); 
-		return "form_admin";
+	public String formulario(ModelMap modelo, @RequestParam String nombre,@RequestParam String email, @RequestParam String clave ) throws Exception {
+            adminServ.guardar(nombre, email, clave); 
+         return "form_admin";
 	}
 }

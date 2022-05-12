@@ -29,17 +29,12 @@ public class ServicioProducto {
         throw new Exception("Es necesario colocar una imagen del producto");
         }
     }
-    
-    
-    
+   
     
     public List<Producto> listarProducto(){
          return productoRepositorio.findAll();     
     }
-    
-    
-    
-    
+   
    //@Transactional() 
     public void agregarProducto(String nombre, String descripcion, Integer precio, String imagen) throws Exception {
       //validaciones(nombre, descripcion ,precio , imagen);
@@ -54,10 +49,7 @@ public class ServicioProducto {
     
       productoRepositorio.save(productoNuevo);
     }
-    
-    
-    
-    
+   
     @Transactional()
     public void modificarProducto(String id, String nombre, String descripcion, Integer precio, String imagen) throws Exception {
      validaciones(nombre, descripcion ,precio , imagen);
@@ -76,10 +68,7 @@ public class ServicioProducto {
             throw new Exception("No se encontro el ID solicitado");
         }
     }
-    
-    
-    
-    
+   
     @Transactional()
     public void eliminarProducto(String id) throws Exception {
      Optional <Producto> respuesta = productoRepositorio.findById(id);

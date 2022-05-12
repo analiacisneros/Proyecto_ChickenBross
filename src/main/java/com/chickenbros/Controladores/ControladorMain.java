@@ -11,6 +11,6 @@ public class ControladorMain {
     
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "login";
     }
 }

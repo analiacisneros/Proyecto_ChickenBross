@@ -38,7 +38,11 @@ public class ControladorPedido {
 		
 		try {
                        servPedido.agregarPedido(id_cliente, monto_total, hora_entrega, lugar);
-                      modelo.put("hora", hora_entrega);
+                       List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
+        
+                       modelo.put("listaHora", listaHoras);
+                       
+                      //modelo.put("hora", hora_entrega); Para mostrar en la vista
                        return "pedido";
 
 		} catch (Exception e) {

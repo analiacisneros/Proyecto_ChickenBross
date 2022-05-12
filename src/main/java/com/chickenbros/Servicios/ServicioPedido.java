@@ -35,9 +35,10 @@ public class ServicioPedido {
         
         Cliente cliente=repoCliente.buscarPorId(id_cliente);
 
+        String[] horas = hora_entrega.split(":");
         pedido.setCliente(cliente);
         pedido.setMonto_total(monto_total);
-        pedido.setHora_entrega(new Time(14, 06,00)); //Agrega Horario
+        pedido.setHora_entrega(new Time(Integer.parseInt(horas[0]), Integer.parseInt(horas[1]),00)); //Agrega Horario
 
         pedido.setFecha(new GregorianCalendar());
         pedido.setLugar(true);
@@ -69,6 +70,7 @@ public class ServicioPedido {
         return listaHs;
     }
     
+    //Metodo en el que paso minutos y me lo pasa a horas y minutos
     public String formatearMinutosAHoraMinuto(int minutos) {
         String formato = "%02d:%02d";
         long horasReales = TimeUnit.MINUTES.toHours(minutos);

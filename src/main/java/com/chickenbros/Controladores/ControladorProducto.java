@@ -50,7 +50,7 @@ public class ControladorProducto {
             return "agregarProducto.html";
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
-            return "agregarProducto.html";
+            return "agregarProducto.html"; 
         }
     }
 

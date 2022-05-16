@@ -51,7 +51,7 @@ public class ServicioCliente {
         throw new Exception("El telefono es invalido");
         }
            if (!clave.equals(claveRep)) {
-        throw new Exception("La contrasnia no coincide");
+        throw new Exception("La contraseña no coincide");
         }
         }
 }

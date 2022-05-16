@@ -3,7 +3,7 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 
@@ -63,96 +63,59 @@
               </figure>
             </div>
 
-        <div class="card" >
+
+        <div class="card">
           <div class="card-body">
-            
+
             <div class="row row-cols-1 row-cols-md-2">
-              <div class="col mb-4">
-                  <div class="card">
-                <img src="pollo-limon.jpg" class="card-img-top" height="150%">
-                <div class="card-body">
-                  <h5 class="card-title">Pollo al limon. </h5>
-                  <p class="card-text">Pechuga de pollo jugosa acompañada de salsa de limón.</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> $700. </li></ul>
-                </div>
-              </div>
+              <div th:each="producto : ${listaProducto}">
+                <div class="card" >
+               <div class="card-body">
+                 <div class="row row-cols-1 row-cols-md-2">
+                   <div class="col mb-4">
+                       <div class="card">
+                     <img src="pollo-limon.jpg" class="card-img-top" height="150%">
+                     <div class="card-body">
+                       <h5 th:text="${producto.nombre}" class="card-title"></h5>
+                       <p th:text="${producto.descripcion}" class="card-text"></p>
+                       <ul class="list-group list-group-flush">
+                         <li  th:text="${producto.precio}" class="list-group-item"></li></ul>
+                     </div>
+                   </div>
+                 </div>
+             </div> 
             </div>
+
+
+            
+
+
+            
+
+
+            
+
+            
+
+          
         </div>
 
-            <div class="col mb-4">
-              <div class="card">
-                <img src="pollo-chimi.jpg" class="card-img-top" height="100%">
-                <div class="card-body">
-                  <h5 class="card-title"> Pollo al chimi. </h5>
-                  <p class="card-text"> Deliciosa pechuga de pollo asada con chimichurri.</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> $1000. </li></ul>
-                </div>
-              </div>
-            </div>
 
-
-            <div class="col mb-4">
-              <div class="card">
-                <img src="recipes.16360.jpeg" class="card-img-top" height="200%">
-                <div class="card-body">
-                  <h5 class="card-title"> Empanada de carne. </h5>
-                  <p class="card-text">Jugosas empanadas de carne cortada a cuchillo.</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> $700. </li></ul>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col mb-4">
-              <div class="card">
-                <img src="pollo.jpg" class="card-img-top" width="100%">
-                <div class="card-body">
-                  <h5 class="card-title"> Empanadas de pollo. </h5>
-                  <p class="card-text">Empanadas de pollo con hierbas y especias.</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> $700. </li></ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col mb-4">
-              <div class="card">
-                <img src="dulce.png" class="card-img-top" width="150%">
-                <div class="card-body">
-                  <h5 class="card-title"> Empanadas dulces. </h5>
-                  <p class="card-text"> Empanadas rellenas de dulce de leche, espolvoreadas con azucar.</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> $1000. </li>   </ul>
-                  </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-4">
-            <div class="card">
-              <img src="batata.jpg" class="card-img-top" width="80%">
-              <div class="card-body">
-                <h5 class="card-title"> Empanadas dulces. </h5>
-                <p class="card-text"> Empanadas rellenas de dulce de batata.</p>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"> $1000. </li></ul>
-              </div>
-            </div>
-          </div>
-        </div>      
         </div>
           </div>
             </div>
+
+
+
+
+
         <div class="bg-dark p-1">
 
         </div>
 
     </section>
 
-
+  </body>
     <footer class=" pt-md-4 fondoImagen p-2 d-flex justify-content-center">
 
       <div class="row">
@@ -187,6 +150,12 @@
       </div>
 
   </footer>
-</body>
-    </html>              
+
+
+
+
+    </html>
+
+
+
    

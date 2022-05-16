@@ -87,4 +87,34 @@ public class ServicioProducto {
         }
         return productoRepositorio.getById(id);
     }
+    
+     @Transactional
+    public void darDeBaja(String id) throws Exception{
+        
+        Optional<Producto> respuesta = productoRepositorio.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Producto pro = respuesta.get();
+            pro.setHabilitado(false);
+            
+            productoRepositorio.save(pro);
+        } else {
+            throw new Exception("No se pudo encontrar el producto.");
+        }
+    }
+    
+   @Transactional
+    public void darDeAlta(String id) throws Exception{
+        
+        Optional<Producto> respuesta = productoRepositorio.findById(id);
+        
+        if (respuesta.isPresent()) {
+            Producto pro = respuesta.get();
+            pro.setHabilitado(true);
+            
+            productoRepositorio.save(pro);
+        } else {
+            throw new Exception("No se pudo encontrar el producto.");
+        }
+    }
 }

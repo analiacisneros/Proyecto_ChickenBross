@@ -25,12 +25,20 @@ public class ControladorProducto {
      @Autowired
     ServicioProducto servProducto;
     
- //   LISTADO DE PRODUCTOS
-    @GetMapping("/listado")
-    public String productos(ModelMap modelo) {
+ //   LISTADO DE PRODUCTOS ADMIN C/BOTONES PARA EDITAR 
+    @GetMapping("/listadoAdmin")
+    public String productosAdmin(ModelMap modelo) {
         List<Producto> listaProductos = servProducto.listarProducto();
         modelo.put("listaProducto", listaProductos);
         return "productosAdmin";
+    }
+    
+    //lista de producto clientes, sin botones 
+     @GetMapping("/listado")
+    public String productos(ModelMap modelo) {
+        List<Producto> listaProductos = servProducto.listarProducto();
+        modelo.put("listaProducto", listaProductos);
+        return "listadoProductos";
     }
     
     // VISTA DE FORMULARIO PARA AGREGAR PRODUCTO
@@ -84,6 +92,30 @@ public class ControladorProducto {
             return "redirect:/productos/listadoProductos";
         } catch (Exception e) {
             return "redirect:/productos/listadoProductos";
+        }
+    }
+    
+    @GetMapping("/baja/{id}")
+    public String baja(@PathVariable String id){
+        
+        try {
+            servProducto.darDeBaja(id);
+            
+            return "redirect:/producto/listadoAdmin";
+        } catch (Exception e) {
+            return "redirect:/";
+        }
+    }
+    
+    @GetMapping("/alta/{id}")
+    public String alta(@PathVariable String id){
+        
+        try {
+            servProducto.darDeAlta(id);
+            
+            return "redirect:/producto/listadoAdmin";
+        } catch (Exception e) {
+            return "redirect:/";
         }
     }
   

@@ -36,14 +36,14 @@ public class ControladorProducto {
     // VISTA DE FORMULARIO PARA AGREGAR PRODUCTO
     @GetMapping("/agregarProducto")
     public String agregarProducto() throws Exception {
-        servProducto.agregarProducto("Pollo", "Frito", 350,"pollo.jpg"); //Lo agergue de prueba
+        //servProducto.agregarProducto("Pollo Picante", "Con salsa de soja", 450,"pollo.jpg"); //Lo agergue de prueba
         return "agregarProducto.html";
     }
   
     @PostMapping("/agregarProducto")
-    public String registrarProducto(ModelMap modelo,@RequestParam String nombre,@RequestParam String descripcion, @RequestParam Integer precio, @RequestParam String imagen ) {
+    public String registrarProducto(ModelMap modelo,@RequestParam String nombre,@RequestParam String descripcion, @RequestParam String precio, @RequestParam String imagen ) {
         try {
-            servProducto.agregarProducto(nombre, descripcion, precio,imagen);
+            servProducto.agregarProducto(nombre, descripcion, Integer.parseInt(precio),imagen);
             modelo.put("exito", "Guardado con exito");
             List<Producto> productos = servProducto.listarProducto();
             modelo.put("productos", productos);

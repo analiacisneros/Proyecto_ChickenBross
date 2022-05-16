@@ -14,10 +14,7 @@ public class ControladorDetallePedido {
      @Autowired
     private ServicioDetallePedido servDetPedido; 
     
-    @GetMapping("/agregar")
-    public String agregarDetalle()
-    {
-        servDetPedido.agregarDetalle();
-     return "detallepedido";
-    }
+    
+    
+   
 }

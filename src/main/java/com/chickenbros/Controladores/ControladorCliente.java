@@ -48,4 +48,10 @@ public class ControladorCliente {
 			return "registroUsuario";
 		}
 	}
+        
+        @GetMapping("/login")
+        public String iniciarSesion()
+        {
+          return "login";
+        }
 }

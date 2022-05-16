@@ -1,12 +1,15 @@
 
 package com.chickenbros.Servicios;
 
+import com.chickenbros.Entidades.AuxProducto;
 import com.chickenbros.Entidades.DetallePedido;
 import com.chickenbros.Entidades.Pedido;
 import com.chickenbros.Entidades.Producto;
+import com.chickenbros.Repositorios.RepositorioAuxProducto;
 import com.chickenbros.Repositorios.RepositorioDetallePedido;
 import com.chickenbros.Repositorios.RepositorioPedido;
 import com.chickenbros.Repositorios.RepositorioProducto;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +25,33 @@ public class ServicioDetallePedido {
     
     @Autowired
     private RepositorioProducto repoProducto;
+    @Autowired
+    private RepositorioAuxProducto repoAux;
     
     
-    
-    public void agregarDetalle()
+    public void agregarDetalle(Pedido pedido)
     {
-       String idProducto="8230832f-eec0-4a07-8239-fe78808c5dfb";
-       String idPedido="1904bdff-b4d0-498a-803a-4d946f1a1328";
-      DetallePedido dPedido=new DetallePedido();
-      //Pedido pedido=repoPedido.buscarPorId(idPedido);
-      //Producto producto=repoProducto.buscarPorId(idProducto);
+       
+       Producto producto=new Producto();
+       Integer cantidad;
+       
+       List<AuxProducto> aux = repoAux.buscarPorId();
+       
+       for (int i=0; i<aux.size();i++) {
+      //AuxProducto auxiliar : aux
+          AuxProducto auxiliar=aux.get(i);
+          producto=repoProducto.buscarPorId(auxiliar.getId_producto());
+          cantidad=auxiliar.getCantidad();
+          
+         DetallePedido detPedido=new DetallePedido(pedido,producto, cantidad);
+          repoDetalle.save(detPedido);
+       
+          
+       }
+       
       
-      //dPedido.setPedido(pedido);
-      //dPedido.setProducto(producto);
-      dPedido.setCant_producto(3);
-      
-      repoDetalle.save(dPedido);
+    repoAux.deleteAll();
+    //repoDetalle.deleteAll();
     }
     
 }

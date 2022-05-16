@@ -14,21 +14,21 @@ and open the template in the editor.
     <body>
         <div>
             <!-- FOMRULARIO DE PEDIDO -->
-            <form action="/pedido/agregar" method="POST">
+            <form action="/pedido/tomarpedido" method="POST">
                 
             <label for="">Cliente:   </label>
             <input type="text"  name="id_cliente" ><br>
             
-            <label for="">Monto: </label>
-            <input type="text"  name="monto_total" ><br>
+            <!--<label for="">Monto: </label>
+            <input type="text"  name="monto_total" ><br> -->
             
-            <p> Hora 
+           <p> Hora 
             <select name="hora_entrega"> 
-             <li th:each="variable : ${lista}" th:text="${variable}"></li>
-                <option th:each="variable : ${listaHora}" th:text="${variable}" ></option>
+            <!-- <li th:each="variable : ${lista}" th:text="${variable}"></li> -->
+                
 
 
-          </select> </p>
+          </select> </p> 
             
            
             <label for="">Direccion:   </label>
@@ -41,7 +41,8 @@ and open the template in the editor.
             <div class="alert alert-danger" role="alert" th:if="${error}!=null">
                 <p th:text="${error}"></p>
             </div>
-                
+                 <input th:each="variable : ${listaHora}" th:text="${variable}" ></option>
+                 
                 <button class="btn btn-primary boton" type="submit"> Agregar</button>
 
         </form>

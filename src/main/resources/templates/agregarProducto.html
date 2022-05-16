@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
@@ -57,31 +58,29 @@
 
 		<form th:action="@{/producto/agregarProducto}" method="POST">
 			<div class="form-group">
-				<label>Nombre</label> <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-			</div>
-                    
-			<div class="form-group">
-				<label>Descripcion</label> <input type="text" class="form-control" name="descripcion" placeholder="Descripcion">
-			</div>
-			<div class="form-group">
-				<label>Precio</label> <input type="text" class="form-control" name="precio" placeholder="Precio">
+				<label>Nombre</label> <input type="text" class="form-control" name="nombre" placeholder="Nombre" required/>
 			</div>
 
-                        <div class="form-group">
-                            <label>Habilitado</label> <input type="radio" class="form-control" name="habilitado" placeholder="Habilitado">
+			<div class="form-group">
+				<label>Descripcion</label> <input type="text" class="form-control" name="descripcion" placeholder="Descripcion" required/>
 			</div>
-	               
+			<div class="form-group">
+				<label>Precio</label> <input type="text" class="form-control" name="precio" placeholder="Precio" required/>
+			</div>
+
+                        
+
                     <!-- NO ANDA -->
                     <div class="d-flex">
                     <div class="">
                         <label for="Imagen" class="form-label mt-3">Aqui agregue la imagen</label>
                         <div class="d-flex">
-                            <input class="form-control " type="file" id="formFile" onchange="imagen"> 
+                            <input class="form-control " type="file" id="formFile" onchange="imagen" name="imagen" required/> 
                         </div>
                     </div>
                     </div>
-                                            
-			<button type="submit" class="btn btn-primary">Submit</button>
+
+			<button type="submit" class="btn btn-primary">Agregar producto</button>
 		</form>
 
 		<section class="py-5 text-center container">
@@ -96,4 +95,4 @@
 
 
 </body>
-</html>
+</html> 

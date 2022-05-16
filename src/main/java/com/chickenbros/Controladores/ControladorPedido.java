@@ -1,13 +1,19 @@
 
 package com.chickenbros.Controladores;
 
+import com.chickenbros.Entidades.AuxProducto;
+import com.chickenbros.Entidades.Pedido;
+import com.chickenbros.Entidades.Producto;
+import com.chickenbros.Servicios.ServicioDetallePedido;
 import com.chickenbros.Servicios.ServicioPedido;
+import com.chickenbros.Servicios.ServicioProducto;
+import com.chickenbros.Servicios.ServiciosAuxProducto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,8 +24,15 @@ public class ControladorPedido {
     
     
     @Autowired
-    private ServicioPedido servPedido;
-
+    private  ServicioPedido servPedido;
+    @Autowired 
+    private ServicioProducto servProducto; 
+    @Autowired
+    private ServiciosAuxProducto servAux;
+    @Autowired
+    private ServicioDetallePedido servDetalle;
+    
+    
     @GetMapping("/agregar")
     public String agregarpedido(ModelMap modelo)
     {
@@ -28,6 +41,98 @@ public class ControladorPedido {
         modelo.put("listaHora", listaHoras);
         
         return "pedido";
+    }
+    
+    @GetMapping("/tomarpedido")
+    public String tomarPedido(ModelMap modelo)
+    {
+       List<Producto> listaProductos = servProducto.listarProducto();
+      modelo.put("listaProducto", listaProductos);
+      
+     return "tomarpedido";
+    }
+    
+    @PostMapping("/tomarpedido")
+    public String tomarPedido(ModelMap modelo, @RequestParam String id_cliente,@RequestParam String hora_entrega, @RequestParam String domicilio)
+    {
+      List<Producto> listaProductos = servProducto.listarProducto();
+      modelo.put("listaProducto", listaProductos);
+     return "tomarpedido";
+    }
+    
+     @GetMapping("/realizarPedido")
+    public String agregarDirec_Horario(ModelMap modelo)
+    {
+       
+       List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
+        
+        modelo.put("listaHora", listaHoras);
+        
+     return "tomarpedidov1";
+    }
+    
+    @GetMapping("/selectProductos")
+    public String agregarProductosVista(ModelMap modelo)
+    {  
+        List<Producto> listaProductos = servProducto.listarProducto();
+        modelo.put("listaProducto", listaProductos);
+        
+       return "tomarpedidov2";
+    }
+    
+    @PostMapping("/selectProductos")
+    public String agregarProductos(ModelMap modelo , @RequestParam String direccion, @RequestParam String hora_entrega)
+    {  
+        List<Producto> listaProductos = servProducto.listarProducto();
+        modelo.put("listaProducto", listaProductos);
+        modelo.put("direccion", direccion);
+        modelo.put("hora", hora_entrega);
+     return "tomarpedidov2";
+    }
+    
+    @PostMapping("/agregarProducto")
+    public String agregarProductos(ModelMap modelo , @RequestParam String direccion, 
+            @RequestParam String hora_entrega, @RequestParam String producto, @RequestParam String cantidad, 
+            @RequestParam String boton)
+    {  
+        
+        String id_cliente="9b6585da-8a7a-45fb-9cfb-f9f3218409f9";
+        List<Producto> listaProductos = servProducto.listarProducto();
+       
+        servAux.agregraAuxProducto(producto, Integer.parseInt(cantidad), id_cliente);
+        modelo.put("listaProducto", listaProductos);
+        modelo.put("cantidad", cantidad);
+        modelo.put("producto", producto);
+        modelo.put("hora", hora_entrega);
+        modelo.put("direccion", direccion);
+        
+        
+        if(boton.equals("Agregar producto"))
+        {
+         modelo.put("boton", boton);
+          
+        }
+        if(boton.equals("Finalizar"))
+        {
+         
+          Double monto=servPedido.calcularMonto(id_cliente);
+          
+          Pedido pedido=servPedido.agregarPedido(id_cliente, monto, hora_entrega, direccion);
+          
+          List<AuxProducto> aux = servAux.traerProdAux();
+          modelo.put("monto", monto);
+      
+          modelo.put("pedido", pedido);
+          
+          modelo.put("auxprod", aux);
+         servDetalle.agregarDetalle(pedido);
+          
+         
+         
+         return "finalizar";
+        }
+        
+    return "tomarpedidov2";
     }
     
     @PostMapping("/agregar")

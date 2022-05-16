@@ -33,7 +33,7 @@ public class ControladorPedido {
     private ServicioDetallePedido servDetalle;
     
     
-    @GetMapping("/agregar")
+    @GetMapping("/listar")
     public String agregarpedido(ModelMap modelo)
     {
         List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
@@ -68,7 +68,7 @@ public class ControladorPedido {
         
         modelo.put("listaHora", listaHoras);
         
-     return "tomarpedidov1";
+     return "realizarPedido";
     }
     
     @GetMapping("/selectProductos")
@@ -77,7 +77,7 @@ public class ControladorPedido {
         List<Producto> listaProductos = servProducto.listarProducto();
         modelo.put("listaProducto", listaProductos);
         
-       return "tomarpedidov2";
+       return "seleccionarProducto";
     }
     
     @PostMapping("/selectProductos")
@@ -87,10 +87,10 @@ public class ControladorPedido {
         modelo.put("listaProducto", listaProductos);
         modelo.put("direccion", direccion);
         modelo.put("hora", hora_entrega);
-     return "tomarpedidov2";
+     return "seleccionarProducto";
     }
     
-    @PostMapping("/agregarProducto")
+    @PostMapping("/agregarPedido")
     public String agregarProductos(ModelMap modelo , @RequestParam String direccion, 
             @RequestParam String hora_entrega, @RequestParam String producto, @RequestParam String cantidad, 
             @RequestParam String boton)
@@ -120,19 +120,19 @@ public class ControladorPedido {
           Pedido pedido=servPedido.agregarPedido(id_cliente, monto, hora_entrega, direccion);
           
           List<AuxProducto> aux = servAux.traerProdAux();
-          modelo.put("monto", monto);
+          /*modelo.put("monto", monto);
       
           modelo.put("pedido", pedido);
           
-          modelo.put("auxprod", aux);
+          modelo.put("auxprod", aux);*/
          servDetalle.agregarDetalle(pedido);
           
          
          
-         return "finalizar";
+         return "finalizarPedido";
         }
         
-    return "tomarpedidov2";
+    return "seleccionarProducto";
     }
     
     @PostMapping("/agregar")

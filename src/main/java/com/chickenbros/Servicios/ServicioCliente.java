@@ -54,4 +54,18 @@ public class ServicioCliente {
         throw new Exception("La contraseña no coincide");
         }
         }
+        
+        public Cliente buscarCliente(String email, String clave) throws Exception
+        {
+            Cliente cliente= clienteRepo.buscarPorEmail(email);  
+            validarUsuario(cliente);
+            return cliente;
+        }
+        
+        public void validarUsuario(Cliente cliente) throws  Exception
+        {
+            if (cliente==null) {
+                throw new Exception("El usuario o contraseña son incorrectos");
+            }
+        }
 }

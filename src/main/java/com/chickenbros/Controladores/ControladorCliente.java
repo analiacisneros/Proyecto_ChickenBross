@@ -1,6 +1,7 @@
 
 package com.chickenbros.Controladores;
 
+import com.chickenbros.Entidades.Cliente;
 import com.chickenbros.Servicios.ServicioCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,5 +54,19 @@ public class ControladorCliente {
         public String iniciarSesion()
         {
           return "login";
+        }
+        @PostMapping("/login")
+        public String iniciarSesionPost(ModelMap modelo,@RequestParam String email, @RequestParam String clave)
+        {
+            try {
+                Cliente cliente=servCliente.buscarCliente(email, clave);
+                String id_cliente=cliente.getId_cliente();
+                modelo.put("id", id_cliente);
+                return "redirect:/producto/listado";
+            } catch (Exception e) {
+                
+                return "login";
+            }
+            
         }
 }

@@ -14,20 +14,20 @@
 </head>  
 <body>
 
-    <form class="formulario">
+    <form class="formulario" action="/cliente/login" method="POST">
       <div class="col input-group mb-3 d-flex justify-content-center"></div>
      <span class="input-group justify-content-center"  style="color: black; font-size: 250%; font-family: 'Times New Roman', Times, serif; font-weight: bold; ">
-       Chicken bros.</span></div>
+       Chicken Bros</span></div>
      <h2> "No dejes para mañana el pollito que puedas comer hoy" </h2> 
      <div class="contenedor">
         <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input type="text" placeholder="Correo Electronico" required/>
+         <input type="text" placeholder="Correo Electronico" name="email" required/>
        
          </div>
          <div class="input-contenedor">
             <i class="fas fa-key icon"></i>
-             <input type="password" placeholder="Contraseña" required/> 
+             <input type="password" placeholder="Contraseña" name="clave" required/> 
             </div>
             <div class="col-12">
               <div class="form-check">
@@ -42,6 +42,10 @@
      </div>
         </div>
     </div>
+    
+    <div class="alert alert-danger"  role="alert">
+        <p th:if="${error != null}"> El email o contraseña son incorrectos</p>
+   </div>
     </form>
 
 

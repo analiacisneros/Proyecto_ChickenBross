@@ -34,15 +34,15 @@
     <div class="card-body">
       
       <h5 class="card-title"> </h5>    
-      <a href="/producto/listadoAdmin"><button type="button" class="btn btn-warning"> Modificar productos </button></a>
+      
       <h5 class="card-title"> Productos. </h5>    
-<<<<<<< HEAD
+
       <a href="" class="btn btn-success"> Ver lista de productos </a>
       <a th:href="@{/producto/agregarProducto}" class="btn btn-success" style="margin-top: 2%;"> Agregar producto </a>
-=======
-        <button type="button" class="btn btn-success"> Ver lista de productos </button>
+
+       
       
->>>>>>> 829820188ac7d118e6ae117e803171a2355bf9c9
+
     </div>
   </div>
 </div>
@@ -76,7 +76,7 @@
         <th scope="col"> Cliente. </th>
         <th scope="col"> Hora de entrega.   </th>
         <th scope="col">  Total.   </th>
-        <th scope="col">  Estado.    </th>
+        
       </tr>
     </thead>
     <tbody>
@@ -85,9 +85,7 @@
         <td>     </td>
         <td th:text="${pedidos.hora_entrega}">     </td>
         <td th:text="'$'+${pedidos.monto_total}">     </td>
-        <td>
-          <a href="#" class="btn btn-success"> Entregado. </a>
-        </td>
+        
       </tr>
       
     </tbody>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +24,7 @@ public class ControladorAdmin {
         private ServicioPedido servPedido;
         
 	 @GetMapping("/listarPedido") //En el lado del Admin
-        public String agregarpedido(ModelMap modelo)
+        public String listarPedidoGet(ModelMap modelo)
         {
         List<Pedido> listaPedidos = servPedido.listarPedido(); 
         
@@ -32,9 +33,23 @@ public class ControladorAdmin {
         return "adminIndex";
          }
 	
+         @PostMapping("/listarPedido") //En el lado del Admin
+        public String listarPedidoPost(ModelMap modelo, @RequestParam String email, @RequestParam String clave)
+        {
+        List<Pedido> listaPedidos = servPedido.listarPedido(); 
+        
+        modelo.put("listaPedidos", listaPedidos);
+        
+        return "adminIndex";
+         }
 	@GetMapping("/registro")
 	public String formulario(ModelMap modelo, @RequestParam String nombre,@RequestParam String email, @RequestParam String clave ) throws Exception {
             adminServ.guardar(nombre, email, clave); 
          return "form_admin";
 	}
+        @GetMapping("/login")
+        public String loginAdmin()
+        {
+         return "loginAdmin";
+        }
 }

@@ -25,19 +25,15 @@
         <div class="container-fluid d-flex align-items-center justify-content-end ">
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a class="nav-link text-dark" href="#">Inicio</a>
+                    <a class="nav-link text-dark" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Ordena Aqui</a>
+                    <a class="nav-link text-dark" href="/pedido/realizarPedido">Ordena Aqui</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Cambiar Usuario</a>
+                    <a class="nav-link text-dark" href="/listadoProductos">Cerrar Sesion</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark"  href="#">Quienes Somos</a>
-                </li>
-
-            </ul>
+                            </ul>
         </div>
         <div class="bg-dark p-1"></div>
     </nav>
@@ -80,7 +76,7 @@
 
 			<button type="submit" class="btn btn-primary">Agregar producto</button>
 		</form>
-        
+        <a href="/"> <button type="button" class="btn btn-success"> Ir al Inicio </button></a>
 
         <div th:if="${exito}!=null" class="alert alert-success" role="alert" style="margin-top: 2%;">
             Producto agregado con exito.

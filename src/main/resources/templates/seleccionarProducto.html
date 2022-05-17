@@ -51,7 +51,8 @@
         <div class="row py-5 mx-3">
             <div class="col-8" style=" height: 400px; width: 100%; ">
                 <div class="divForm">
-                <form action="/pedido/agregarPedido" method="POST" class="formulario">
+                <form th:action="@{'/pedido/agregarPedido/'+${id_usuario}}" method="POST" class="formulario">
+                    
                    <!-- Direccion y horario -->
                     <input type="text"  class="form-control" th:placeholder="${direccion}" disabled>
                     <input type="text"  class="form-control" th:placeholder="${hora}" disabled>

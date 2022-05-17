@@ -50,7 +50,8 @@
         <div class="row py-5 mx-3">
             <div class="col-8" style=" height: 400px; width: 100%; ">
                 <div class="divForm">
-                <form action="/pedido/selectProductos" class="formulario" method="post">
+                <form th:action="@{'/pedido/selectProductos/'+${id_usuario}}" class="formulario" method="post">
+                    
                     <div class="form-group">
                      
                         <input type="text" class="form-control" placeholder="Dirección" name="direccion">

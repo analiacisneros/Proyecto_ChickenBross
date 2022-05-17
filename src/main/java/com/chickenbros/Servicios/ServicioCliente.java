@@ -58,14 +58,17 @@ public class ServicioCliente {
         public Cliente buscarCliente(String email, String clave) throws Exception
         {
             Cliente cliente= clienteRepo.buscarPorEmail(email);  
-            validarUsuario(cliente);
+            validarUsuario(cliente,clave);
             return cliente;
         }
         
-        public void validarUsuario(Cliente cliente) throws  Exception
+        public void validarUsuario(Cliente cliente, String clave) throws  Exception
         {
-            if (cliente==null) {
+            
+            if (cliente==null || !cliente.getClave().equals(clave)) {
                 throw new Exception("El usuario o contraseña son incorrectos");
             }
+           
+            
         }
 }

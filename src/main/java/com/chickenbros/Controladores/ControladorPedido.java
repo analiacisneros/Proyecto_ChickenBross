@@ -33,7 +33,7 @@ public class ControladorPedido {
     private ServicioDetallePedido servDetalle;
     
     
-    @GetMapping("/listar")
+    @GetMapping("/listar") //En el lado del Admin
     public String agregarpedido(ModelMap modelo)
     {
         List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
@@ -43,7 +43,7 @@ public class ControladorPedido {
         return "pedido";
     }
     
-    @GetMapping("/tomarpedido")
+    @GetMapping("/tomarpedido") //Verificar
     public String tomarPedido(ModelMap modelo)
     {
        List<Producto> listaProductos = servProducto.listarProducto();
@@ -60,14 +60,14 @@ public class ControladorPedido {
      return "tomarpedido";
     }
     
-     @GetMapping("/realizarPedido")
-    public String agregarDirec_Horario(ModelMap modelo)
+     @GetMapping("/realizarPedido/{id}")
+    public String agregarDirec_Horario(ModelMap modelo,@PathVariable("id") String id_usuario)
     {
        
        List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
         
         modelo.put("listaHora", listaHoras);
-        
+        modelo.put("id_usuario", id_usuario);
      return "realizarPedido";
     }
     
@@ -80,23 +80,26 @@ public class ControladorPedido {
        return "seleccionarProducto";
     }
     
-    @PostMapping("/selectProductos")
-    public String agregarProductos(ModelMap modelo , @RequestParam String direccion, @RequestParam String hora_entrega)
+    @PostMapping("/selectProductos/{id}")
+    public String agregarProductos(ModelMap modelo , @RequestParam String direccion, 
+            @RequestParam String hora_entrega,@PathVariable("id") String id_usuario)
     {  
         List<Producto> listaProductos = servProducto.listarProducto();
         modelo.put("listaProducto", listaProductos);
         modelo.put("direccion", direccion);
         modelo.put("hora", hora_entrega);
+        modelo.put("id_usuario", id_usuario);
+        
      return "seleccionarProducto";
     }
     
-    @PostMapping("/agregarPedido")
+    @PostMapping("/agregarPedido/{id}")
     public String agregarProductos(ModelMap modelo , @RequestParam String direccion, 
             @RequestParam String hora_entrega, @RequestParam String producto, @RequestParam String cantidad, 
-            @RequestParam String boton)
+            @RequestParam String boton,@PathVariable("id") String id_cliente)
     {  
         
-        String id_cliente="9b6585da-8a7a-45fb-9cfb-f9f3218409f9";
+        
         List<Producto> listaProductos = servProducto.listarProducto();
        
         servAux.agregraAuxProducto(producto, Integer.parseInt(cantidad), id_cliente);
@@ -105,12 +108,12 @@ public class ControladorPedido {
         modelo.put("producto", producto);
         modelo.put("hora", hora_entrega);
         modelo.put("direccion", direccion);
-        
+        modelo.put("id_usuario",id_cliente);
         
         if(boton.equals("Agregar producto"))
         {
          modelo.put("boton", boton);
-          
+         
         }
         if(boton.equals("Finalizar"))
         {
@@ -127,12 +130,12 @@ public class ControladorPedido {
           modelo.put("auxprod", aux);*/
          servDetalle.agregarDetalle(pedido);
           
-         
+         modelo.put("id_usuario",id_cliente);
          
          return "finalizarPedido";
         }
-        
-    return "seleccionarProducto";
+       
+     return "seleccionarProducto";
     }
     
     @PostMapping("/agregar")

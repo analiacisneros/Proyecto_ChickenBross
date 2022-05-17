@@ -34,10 +34,12 @@ public class ControladorProducto {
     }
     
     //lista de producto clientes, sin botones 
-     @GetMapping("/listado")
-    public String productos(ModelMap modelo) {
+     @GetMapping("/listado/{id}")
+    public String productos(ModelMap modelo, @PathVariable("id") String id_usuario) {
+        //(@PathVariable("id") int va)
         List<Producto> listaProductos = servProducto.listarProducto();
         modelo.put("listaProducto", listaProductos);
+        modelo.put("id_usuario", id_usuario);
         return "listadoProductos";
     }
     

@@ -5,6 +5,7 @@ import com.chickenbros.Entidades.Cliente;
 import com.chickenbros.Servicios.ServicioCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,15 +57,17 @@ public class ControladorCliente {
           return "login";
         }
         @PostMapping("/login")
-        public String iniciarSesionPost(ModelMap modelo,@RequestParam String email, @RequestParam String clave)
+        public String iniciarSesionPost(Model modelo,@RequestParam String email, @RequestParam String clave)
         {
             try {
                 Cliente cliente=servCliente.buscarCliente(email, clave);
                 String id_cliente=cliente.getId_cliente();
-                modelo.put("id", id_cliente);
-                return "redirect:/producto/listado";
-            } catch (Exception e) {
+                modelo.addAttribute("id_cliente", cliente.getApellido());
+   
+                return "redirect:/producto/listado/"+id_cliente;
                 
+            } catch (Exception e) {
+                modelo.addAttribute("error", "Error al iniciar sesion");
                 return "login";
             }
             

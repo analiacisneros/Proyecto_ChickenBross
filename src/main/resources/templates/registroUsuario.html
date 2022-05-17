@@ -22,7 +22,7 @@
               style="color: black; font-size: 250%; font-family: 'sans-serif'; font-weight: bold; ">
                 Registro </span>
             
-              <div class="contenedor" action="/cliente/registro">
+              <div class="contenedor" th:action="@{/cliente/registro}">
                   
                   
                   <input type="text" placeholder="Nombre" name="nombre" required/>
@@ -33,7 +33,8 @@
                   <input type="password" placeholder="Contraseña" name="clave" required/>  
                   <input type="password" placeholder="Repetir contraseña" name="claveRep" required/>
                   <input type="submit" value="Registrarse" class="button">
-
+                  <p style="background-color: white; margin-top: 2%;">¿Ya tienes cuenta? 
+                      <a th:href="@{/cliente/login}">Iniciar sesion</a> </p>
                   
   
               </div>

@@ -33,15 +33,7 @@ public class ControladorPedido {
     private ServicioDetallePedido servDetalle;
     
     
-    @GetMapping("/listarPedido") //En el lado del Admin
-    public String agregarpedido(ModelMap modelo)
-    {
-        List<Pedido> listaPedidos = servPedido.listarPedido(); 
-        
-        modelo.put("listaPedidos", listaPedidos);
-        
-        return "adminIndex";
-    }
+   
     
     @GetMapping("/tomarpedido") //Verificar
     public String tomarPedido(ModelMap modelo)

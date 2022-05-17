@@ -33,7 +33,8 @@ public class ControladorProducto {
         return "productosAdmin";
     }
     
-    //lista de producto clientes, sin botones 
+       
+    //lista de producto clientes con id usuario
      @GetMapping("/listado/{id}")
     public String productos(ModelMap modelo, @PathVariable("id") String id_usuario) {
         //(@PathVariable("id") int va)

@@ -100,4 +100,9 @@ public class ServicioPedido {
       
     return montoFinal;
     }
+    
+    public List<Pedido> listarPedido()
+    {
+      return repoPedido.findAll();
+    }
 }

@@ -33,14 +33,14 @@ public class ControladorPedido {
     private ServicioDetallePedido servDetalle;
     
     
-    @GetMapping("/listar") //En el lado del Admin
+    @GetMapping("/listarPedido") //En el lado del Admin
     public String agregarpedido(ModelMap modelo)
     {
-        List<String> listaHoras = servPedido.listarHoras(); //Me trae una lista con horarios de 30 min extra 
+        List<Pedido> listaPedidos = servPedido.listarPedido(); 
         
-        modelo.put("listaHora", listaHoras);
+        modelo.put("listaPedidos", listaPedidos);
         
-        return "pedido";
+        return "adminIndex";
     }
     
     @GetMapping("/tomarpedido") //Verificar
